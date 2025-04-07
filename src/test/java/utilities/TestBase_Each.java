@@ -10,8 +10,10 @@ import java.time.Duration;
 public class TestBase_Each {
 
    protected WebDriver driver;
+
     @BeforeEach
     public void setUp(){
+
         driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -19,6 +21,7 @@ public class TestBase_Each {
 
     @AfterEach
     public void tearDown(){
+
         driver.quit();
     }
 }
