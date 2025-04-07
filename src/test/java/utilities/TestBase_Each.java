@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class TestBase_Each {
 
-    WebDriver driver;
+   protected WebDriver driver;
     @BeforeEach
     public void setUp(){
         driver=new ChromeDriver();
