@@ -7,11 +7,10 @@ import utilities.TestBase_Each;
 
 import java.util.Set;
 
-public class C04_KontrolsuzAcilanWindow extends TestBase_Each {
+public class C05_HedefUrlIleWindowDegistirme extends TestBase_Each {
 
     @Test
     public void test01(){
-
         //● https://the-internet.herokuapp.com/windows adresine gidin.
         driver.get("https://the-internet.herokuapp.com/windows");
 
@@ -20,24 +19,20 @@ public class C04_KontrolsuzAcilanWindow extends TestBase_Each {
         driver.findElement(By.xpath("//*[.='Elemental Selenium']")).click();
 
 
-        // acilan yeni window'a gecip
-        // gecisi yeni window'un title'ini kullanarak yapin
+        // acilan yeni window'a gecin
+        //url ile gecis yapalim
 
-        // 1- acik olan tum window'larin WHD'lerini alip kaydedelim
+        String hedefUrl="https://elementalselenium.com/";
 
-        Set<String> acikWindowlarinWhdleri=driver.getWindowHandles();
+        //1. adim acik tum windowlarin WindowHandleDegerlerini alip kaydedelim
 
-        //[074939BC4B25DC0CE37FF5EA9A9C3485, 3C5E74DA2EE7E4B728276EBF1DD5750B]
+        Set<String> acikTumWindowlarinWhdSeti=driver.getWindowHandles();
 
-        String hedefWinbdowTitel="Home | Elemental Selenium";
-
-        for (String eachWhd:acikWindowlarinWhdleri){
+        for (String eachWhd:acikTumWindowlarinWhdSeti){
             driver.switchTo().window(eachWhd);
-        // gectigimiz windowun titel alip
-            //gecmek istedigimizin titel ile esit mi kontrol edelim
-
-            if (driver.getTitle().equals(hedefWinbdowTitel)){
-                //dogru window'dayiz demektir,burada kalabiliriz
+            if (driver.getCurrentUrl().equals(hedefUrl)){
+                //actual Url, hedef url'e esit ise
+                //dogru yerdeyiz demektir, orada kalalim
                 break;
             }
         }
@@ -50,4 +45,5 @@ public class C04_KontrolsuzAcilanWindow extends TestBase_Each {
         Assertions.assertEquals(expectedYazi,actualYazi);
 
     }
+
 }
